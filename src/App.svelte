@@ -1,7 +1,14 @@
 <script>
+	import { setContext } from "svelte";
 	import Nav from "./Nav.svelte";
 	import {Router} from "svelte-routing"
 	import Contenido from "./Contenido.svelte";
+
+	const URL = {
+		articulos:"https://tiendabackend.fly.dev/api/articulos/",
+		clientes:"https://tiendabackend.fly.dev/api/clientes/"
+	}
+	setContext("URL",URL);
 </script>
 <h1>Mi aplicación banana</h1>
 <Router>
