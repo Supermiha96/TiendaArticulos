@@ -3,6 +3,7 @@
     export let documento = {};
     export let tipo = "🥖👌";
     import { getContext } from "svelte";
+    import { data } from "./store";
     let URL = getContext("URL");
     let handler = () => {};
 
@@ -14,7 +15,7 @@
         };
         fetch(URL.articulos, opciones)
             .then((res) => res.json())
-            .then((datos) => console.log(datos))
+            .then(doc=> $data = [... $data,doc])
             .catch((error) => console.log(error));
     }
     function modificar() {
@@ -34,7 +35,7 @@
         };
         fetch(URL.articulos + documento._id, opciones)
             .then((res) => res.json())
-            .then((datos) => console.log(datos))
+            .then($data = $data.filter(doc => doc._id != documento._id))
             .catch((error) => console.log(error));
     }
     function setup() {
